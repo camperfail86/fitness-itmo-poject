@@ -1,0 +1,589 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="FitnessDefinitions" targetNamespace="https://example.org/fitness-concept">
+  <bpmn:message id="MessageRequest" name="Запрос клиента" />
+  <bpmn:message id="MessageResult" name="Результат операции" />
+  <bpmn:process id="Booking" name="Запись на занятие" isExecutable="false">
+    <bpmn:startEvent id="BStart" name="Запрос записи">
+      <bpmn:outgoing>BookingF0</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="BStartMessage" messageRef="MessageRequest" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="BCheck" name="Проверить абонемент">
+      <bpmn:incoming>BookingF0</bpmn:incoming>
+      <bpmn:outgoing>BookingF1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="BValid" name="Абонемент подходит?">
+      <bpmn:incoming>BookingF1</bpmn:incoming>
+      <bpmn:outgoing>BookingF2</bpmn:outgoing>
+      <bpmn:outgoing>BookingF3</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="BReserve" name="Атомарно проверить право и место, создать запись">
+      <bpmn:incoming>BookingF2</bpmn:incoming>
+      <bpmn:incoming>BookingF5</bpmn:incoming>
+      <bpmn:outgoing>BookingF7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="BResult" name="Запись создана?">
+      <bpmn:incoming>BookingF7</bpmn:incoming>
+      <bpmn:outgoing>BookingF8</bpmn:outgoing>
+      <bpmn:outgoing>BookingF9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="BConfirm" name="Отправить подтверждение">
+      <bpmn:incoming>BookingF8</bpmn:incoming>
+      <bpmn:outgoing>BookingF10</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="BEnd" name="Клиент записан">
+      <bpmn:incoming>BookingF10</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="BBuy" name="Покупка абонемента Процесс 2" calledElement="Payment">
+      <bpmn:incoming>BookingF3</bpmn:incoming>
+      <bpmn:outgoing>BookingF4</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:exclusiveGateway id="BPaid" name="Покупка успешна?">
+      <bpmn:incoming>BookingF4</bpmn:incoming>
+      <bpmn:outgoing>BookingF5</bpmn:outgoing>
+      <bpmn:outgoing>BookingF6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="BUnpaid" name="Без записи">
+      <bpmn:incoming>BookingF6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sendTask id="BReject" name="Отправить отказ: нет права, дубль или нет мест">
+      <bpmn:incoming>BookingF9</bpmn:incoming>
+      <bpmn:outgoing>BookingF11</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="BRejectEnd" name="Без новой записи">
+      <bpmn:incoming>BookingF11</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="BookingF0" sourceRef="BStart" targetRef="BCheck" />
+    <bpmn:sequenceFlow id="BookingF1" sourceRef="BCheck" targetRef="BValid" />
+    <bpmn:sequenceFlow id="BookingF2" sourceRef="BValid" targetRef="BReserve" name="Да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Да'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF3" sourceRef="BValid" targetRef="BBuy" name="Нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Нет'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF4" sourceRef="BBuy" targetRef="BPaid" />
+    <bpmn:sequenceFlow id="BookingF5" sourceRef="BPaid" targetRef="BReserve" name="Да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Да'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF6" sourceRef="BPaid" targetRef="BUnpaid" name="Нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Нет'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF7" sourceRef="BReserve" targetRef="BResult" />
+    <bpmn:sequenceFlow id="BookingF8" sourceRef="BResult" targetRef="BConfirm" name="Да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Да'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF9" sourceRef="BResult" targetRef="BReject" name="Нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Нет'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="BookingF10" sourceRef="BConfirm" targetRef="BEnd" />
+    <bpmn:sequenceFlow id="BookingF11" sourceRef="BReject" targetRef="BRejectEnd" />
+  </bpmn:process>
+  <bpmn:collaboration id="BookingCollaboration">
+    <bpmn:participant id="BookingClub" name="Фитнес клуб" processRef="Booking" />
+    <bpmn:participant id="ClientBooking" name="Клиент" />
+    <bpmn:messageFlow id="BookingM0" sourceRef="ClientBooking" targetRef="BStart" name="Запрос" />
+    <bpmn:messageFlow id="BookingM1" sourceRef="BConfirm" targetRef="ClientBooking" name="Подтверждение" />
+    <bpmn:messageFlow id="BookingM2" sourceRef="BReject" targetRef="ClientBooking" name="Отказ" />
+  </bpmn:collaboration>
+  <bpmn:process id="Payment" name="Покупка абонемента" isExecutable="false">
+    <bpmn:laneSet id="PaymentLanes">
+      <bpmn:lane id="Paymentsystem" name="Информационная система">
+        <bpmn:flowNodeRef>PStart</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PCreate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PLink</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PWait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PTimer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PVerify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PResult</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PActivate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PSuccess</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PFail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PFailEnd</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Paymentadmin" name="Администратор">
+        <bpmn:flowNodeRef>PManual</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PPending</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="PStart" name="Начало покупки">
+      <bpmn:outgoing>PaymentF0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="PCreate" name="Создать заказ и платёж у провайдера">
+      <bpmn:incoming>PaymentF0</bpmn:incoming>
+      <bpmn:outgoing>PaymentF1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="PLink" name="Отправить клиенту ссылку на оплату">
+      <bpmn:incoming>PaymentF1</bpmn:incoming>
+      <bpmn:outgoing>PaymentF2</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:receiveTask id="PWait" name="Ожидать уведомление платёжного сервиса">
+      <bpmn:incoming>PaymentF2</bpmn:incoming>
+      <bpmn:outgoing>PaymentF3</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:boundaryEvent id="PTimer" name="24 часа" attachedToRef="PWait" cancelActivity="true">
+      <bpmn:outgoing>PaymentF9</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="PaymentTimeout">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT24H</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:serviceTask id="PVerify" name="Проверить подлинность, заказ, сумму и статус">
+      <bpmn:incoming>PaymentF3</bpmn:incoming>
+      <bpmn:outgoing>PaymentF4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="PResult" name="Оплата подтверждена?">
+      <bpmn:incoming>PaymentF4</bpmn:incoming>
+      <bpmn:outgoing>PaymentF5</bpmn:outgoing>
+      <bpmn:outgoing>PaymentF7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="PActivate" name="Однократно активировать абонемент; результат покупки — успех">
+      <bpmn:incoming>PaymentF5</bpmn:incoming>
+      <bpmn:outgoing>PaymentF6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="PSuccess" name="Успешная покупка">
+      <bpmn:incoming>PaymentF6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="PFail" name="Сохранить отказ; результат покупки — без подтверждения">
+      <bpmn:incoming>PaymentF7</bpmn:incoming>
+      <bpmn:outgoing>PaymentF8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="PFailEnd" name="Неуспешная попытка">
+      <bpmn:incoming>PaymentF8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="PManual" name="Сверить статус с провайдером; неподтверждённый заказ оставить на проверке">
+      <bpmn:incoming>PaymentF9</bpmn:incoming>
+      <bpmn:outgoing>PaymentF10</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="PPending" name="Без успеха">
+      <bpmn:incoming>PaymentF10</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="PaymentF0" sourceRef="PStart" targetRef="PCreate" />
+    <bpmn:sequenceFlow id="PaymentF1" sourceRef="PCreate" targetRef="PLink" />
+    <bpmn:sequenceFlow id="PaymentF2" sourceRef="PLink" targetRef="PWait" />
+    <bpmn:sequenceFlow id="PaymentF3" sourceRef="PWait" targetRef="PVerify" />
+    <bpmn:sequenceFlow id="PaymentF4" sourceRef="PVerify" targetRef="PResult" />
+    <bpmn:sequenceFlow id="PaymentF5" sourceRef="PResult" targetRef="PActivate" name="Да">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Да'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="PaymentF6" sourceRef="PActivate" targetRef="PSuccess" />
+    <bpmn:sequenceFlow id="PaymentF7" sourceRef="PResult" targetRef="PFail" name="Нет">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Нет'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="PaymentF8" sourceRef="PFail" targetRef="PFailEnd" />
+    <bpmn:sequenceFlow id="PaymentF9" sourceRef="PTimer" targetRef="PManual" name="Время истекло" />
+    <bpmn:sequenceFlow id="PaymentF10" sourceRef="PManual" targetRef="PPending" />
+  </bpmn:process>
+  <bpmn:collaboration id="PaymentCollaboration">
+    <bpmn:participant id="PaymentClub" name="Фитнес клуб" processRef="Payment" />
+    <bpmn:participant id="Provider" name="Платёжный сервис" />
+    <bpmn:participant id="ClientPayment" name="Клиент" />
+    <bpmn:messageFlow id="PaymentM0" sourceRef="PCreate" targetRef="Provider" name="Создание платежа" />
+    <bpmn:messageFlow id="PaymentM1" sourceRef="PLink" targetRef="ClientPayment" name="Ссылка на оплату" />
+    <bpmn:messageFlow id="PaymentM2" sourceRef="Provider" targetRef="PWait" name="Уведомление" />
+  </bpmn:collaboration>
+  <bpmn:process id="Visit" name="Регистрация посещения" isExecutable="false">
+    <bpmn:laneSet id="VisitLanes">
+      <bpmn:lane id="Visitsystem" name="Информационная система">
+        <bpmn:flowNodeRef>VCheck</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VResult</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VRegister</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VEnd</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Visitadmin" name="Администратор">
+        <bpmn:flowNodeRef>VStart</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VIdentify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VAllow</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VExplain</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VRefused</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>VExisting</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="VStart" name="Клиент пришёл">
+      <bpmn:outgoing>VisitF0</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="VStartMessage" messageRef="MessageRequest" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="VIdentify" name="Идентифицировать клиента и найти запись">
+      <bpmn:incoming>VisitF0</bpmn:incoming>
+      <bpmn:outgoing>VisitF1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="VCheck" name="Проверить запись, абонемент и наличие уже учтённого визита">
+      <bpmn:incoming>VisitF1</bpmn:incoming>
+      <bpmn:outgoing>VisitF2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="VResult" name="Результат проверки">
+      <bpmn:incoming>VisitF2</bpmn:incoming>
+      <bpmn:outgoing>VisitF3</bpmn:outgoing>
+      <bpmn:outgoing>VisitF6</bpmn:outgoing>
+      <bpmn:outgoing>VisitF8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="VAllow" name="Подтвердить допуск и фактический визит">
+      <bpmn:incoming>VisitF3</bpmn:incoming>
+      <bpmn:outgoing>VisitF4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="VRegister" name="Атомарно зарегистрировать визит, списать посещение и обновить отчётность">
+      <bpmn:incoming>VisitF4</bpmn:incoming>
+      <bpmn:outgoing>VisitF5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="VEnd" name="Визит учтён">
+      <bpmn:incoming>VisitF5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="VExplain" name="Сообщить причину отказа и разобрать исключение">
+      <bpmn:incoming>VisitF6</bpmn:incoming>
+      <bpmn:outgoing>VisitF7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="VRefused" name="Без списания">
+      <bpmn:incoming>VisitF7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="VExisting" name="Визит уже учтён; повторного списания нет">
+      <bpmn:incoming>VisitF8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="VisitF0" sourceRef="VStart" targetRef="VIdentify" />
+    <bpmn:sequenceFlow id="VisitF1" sourceRef="VIdentify" targetRef="VCheck" />
+    <bpmn:sequenceFlow id="VisitF2" sourceRef="VCheck" targetRef="VResult" />
+    <bpmn:sequenceFlow id="VisitF3" sourceRef="VResult" targetRef="VAllow" name="Допуск разрешён">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Допуск разрешён'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="VisitF4" sourceRef="VAllow" targetRef="VRegister" />
+    <bpmn:sequenceFlow id="VisitF5" sourceRef="VRegister" targetRef="VEnd" />
+    <bpmn:sequenceFlow id="VisitF6" sourceRef="VResult" targetRef="VExplain" name="Нет права">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Нет права'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="VisitF7" sourceRef="VExplain" targetRef="VRefused" />
+    <bpmn:sequenceFlow id="VisitF8" sourceRef="VResult" targetRef="VExisting" name="Визит уже учтён">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">result = 'Визит уже учтён'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmn:collaboration id="VisitCollaboration">
+    <bpmn:participant id="VisitClub" name="Фитнес клуб" processRef="Visit" />
+    <bpmn:participant id="ClientVisit" name="Клиент" />
+    <bpmn:messageFlow id="VisitM0" sourceRef="ClientVisit" targetRef="VStart" name="Обращение на рецепцию" />
+    <bpmn:messageFlow id="VisitM1" sourceRef="VExplain" targetRef="ClientVisit" name="Причина отказа" />
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="BookingDiagram" name="Запись на занятие">
+    <bpmndi:BPMNPlane id="BookingPlane" bpmnElement="BookingCollaboration">
+      <bpmndi:BPMNShape id="BookingClubShape" bpmnElement="BookingClub" isHorizontal="true">
+        <dc:Bounds x="40" y="220" width="1540" height="820" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ClientBookingShape" bpmnElement="ClientBooking" isHorizontal="true">
+        <dc:Bounds x="40" y="40" width="1540" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BStartShape" bpmnElement="BStart">
+        <dc:Bounds x="135" y="332" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BCheckShape" bpmnElement="BCheck">
+        <dc:Bounds x="250" y="300" width="210" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BValidShape" bpmnElement="BValid" isMarkerVisible="true">
+        <dc:Bounds x="520" y="325" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BReserveShape" bpmnElement="BReserve">
+        <dc:Bounds x="720" y="300" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BResultShape" bpmnElement="BResult" isMarkerVisible="true">
+        <dc:Bounds x="1030" y="325" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BConfirmShape" bpmnElement="BConfirm">
+        <dc:Bounds x="1170" y="300" width="220" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BEndShape" bpmnElement="BEnd">
+        <dc:Bounds x="1460" y="332" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BBuyShape" bpmnElement="BBuy">
+        <dc:Bounds x="410" y="650" width="260" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPaidShape" bpmnElement="BPaid" isMarkerVisible="true">
+        <dc:Bounds x="740" y="675" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BUnpaidShape" bpmnElement="BUnpaid">
+        <dc:Bounds x="930" y="682" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BRejectShape" bpmnElement="BReject">
+        <dc:Bounds x="1170" y="800" width="220" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BRejectEndShape" bpmnElement="BRejectEnd">
+        <dc:Bounds x="1460" y="837" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BookingF0Edge" bpmnElement="BookingF0">
+        <di:waypoint x="171" y="350" />
+        <di:waypoint x="250" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF1Edge" bpmnElement="BookingF1">
+        <di:waypoint x="460" y="350" />
+        <di:waypoint x="520" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF2Edge" bpmnElement="BookingF2">
+        <di:waypoint x="570" y="350" />
+        <di:waypoint x="720" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF3Edge" bpmnElement="BookingF3">
+        <di:waypoint x="545" y="375" />
+        <di:waypoint x="545" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF4Edge" bpmnElement="BookingF4">
+        <di:waypoint x="670" y="700" />
+        <di:waypoint x="740" y="700" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF5Edge" bpmnElement="BookingF5">
+        <di:waypoint x="765" y="675" />
+        <di:waypoint x="765" y="550" />
+        <di:waypoint x="640" y="550" />
+        <di:waypoint x="640" y="350" />
+        <di:waypoint x="720" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF6Edge" bpmnElement="BookingF6">
+        <di:waypoint x="790" y="700" />
+        <di:waypoint x="930" y="700" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF7Edge" bpmnElement="BookingF7">
+        <di:waypoint x="970" y="350" />
+        <di:waypoint x="1030" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF8Edge" bpmnElement="BookingF8">
+        <di:waypoint x="1080" y="350" />
+        <di:waypoint x="1170" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF9Edge" bpmnElement="BookingF9">
+        <di:waypoint x="1055" y="375" />
+        <di:waypoint x="1055" y="855" />
+        <di:waypoint x="1170" y="855" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF10Edge" bpmnElement="BookingF10">
+        <di:waypoint x="1390" y="350" />
+        <di:waypoint x="1460" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingF11Edge" bpmnElement="BookingF11">
+        <di:waypoint x="1390" y="855" />
+        <di:waypoint x="1460" y="855" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingM0Edge" bpmnElement="BookingM0">
+        <di:waypoint x="153" y="120" />
+        <di:waypoint x="153" y="332" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingM1Edge" bpmnElement="BookingM1">
+        <di:waypoint x="1280" y="300" />
+        <di:waypoint x="1280" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BookingM2Edge" bpmnElement="BookingM2">
+        <di:waypoint x="1390" y="825" />
+        <di:waypoint x="1540" y="825" />
+        <di:waypoint x="1540" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="PaymentDiagram" name="Покупка абонемента">
+    <bpmndi:BPMNPlane id="PaymentPlane" bpmnElement="PaymentCollaboration">
+      <bpmndi:BPMNShape id="PaymentClubShape" bpmnElement="PaymentClub" isHorizontal="true">
+        <dc:Bounds x="40" y="220" width="1620" height="960" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ProviderShape" bpmnElement="Provider" isHorizontal="true">
+        <dc:Bounds x="40" y="40" width="500" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ClientPaymentShape" bpmnElement="ClientPayment" isHorizontal="true">
+        <dc:Bounds x="560" y="40" width="1100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PaymentsystemShape" bpmnElement="Paymentsystem" isHorizontal="true">
+        <dc:Bounds x="90" y="220" width="1570" height="740" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PaymentadminShape" bpmnElement="Paymentadmin" isHorizontal="true">
+        <dc:Bounds x="90" y="960" width="1570" height="220" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PStartShape" bpmnElement="PStart">
+        <dc:Bounds x="135" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PCreateShape" bpmnElement="PCreate">
+        <dc:Bounds x="250" y="270" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PLinkShape" bpmnElement="PLink">
+        <dc:Bounds x="570" y="270" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PWaitShape" bpmnElement="PWait">
+        <dc:Bounds x="900" y="270" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PTimerShape" bpmnElement="PTimer">
+        <dc:Bounds x="1072" y="352" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PVerifyShape" bpmnElement="PVerify">
+        <dc:Bounds x="900" y="520" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PResultShape" bpmnElement="PResult" isMarkerVisible="true">
+        <dc:Bounds x="640" y="545" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PActivateShape" bpmnElement="PActivate">
+        <dc:Bounds x="250" y="520" width="270" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PSuccessShape" bpmnElement="PSuccess">
+        <dc:Bounds x="155" y="557" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PFailShape" bpmnElement="PFail">
+        <dc:Bounds x="550" y="790" width="270" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PFailEndShape" bpmnElement="PFailEnd">
+        <dc:Bounds x="900" y="827" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PManualShape" bpmnElement="PManual">
+        <dc:Bounds x="1250" y="1010" width="280" height="145" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PPendingShape" bpmnElement="PPending">
+        <dc:Bounds x="1580" y="1052" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="PaymentF0Edge" bpmnElement="PaymentF0">
+        <di:waypoint x="171" y="320" />
+        <di:waypoint x="250" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF1Edge" bpmnElement="PaymentF1">
+        <di:waypoint x="500" y="320" />
+        <di:waypoint x="570" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF2Edge" bpmnElement="PaymentF2">
+        <di:waypoint x="820" y="320" />
+        <di:waypoint x="900" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF3Edge" bpmnElement="PaymentF3">
+        <di:waypoint x="1025" y="370" />
+        <di:waypoint x="1025" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF4Edge" bpmnElement="PaymentF4">
+        <di:waypoint x="900" y="570" />
+        <di:waypoint x="690" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF5Edge" bpmnElement="PaymentF5">
+        <di:waypoint x="640" y="570" />
+        <di:waypoint x="520" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF6Edge" bpmnElement="PaymentF6">
+        <di:waypoint x="250" y="575" />
+        <di:waypoint x="191" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF7Edge" bpmnElement="PaymentF7">
+        <di:waypoint x="665" y="595" />
+        <di:waypoint x="665" y="790" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF8Edge" bpmnElement="PaymentF8">
+        <di:waypoint x="820" y="845" />
+        <di:waypoint x="900" y="845" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF9Edge" bpmnElement="PaymentF9">
+        <di:waypoint x="1090" y="388" />
+        <di:waypoint x="1200" y="388" />
+        <di:waypoint x="1200" y="1065" />
+        <di:waypoint x="1250" y="1065" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentF10Edge" bpmnElement="PaymentF10">
+        <di:waypoint x="1530" y="1070" />
+        <di:waypoint x="1580" y="1070" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentM0Edge" bpmnElement="PaymentM0">
+        <di:waypoint x="375" y="270" />
+        <di:waypoint x="375" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentM1Edge" bpmnElement="PaymentM1">
+        <di:waypoint x="695" y="270" />
+        <di:waypoint x="695" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="PaymentM2Edge" bpmnElement="PaymentM2">
+        <di:waypoint x="475" y="120" />
+        <di:waypoint x="475" y="150" />
+        <di:waypoint x="1025" y="150" />
+        <di:waypoint x="1025" y="270" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="VisitDiagram" name="Регистрация посещения">
+    <bpmndi:BPMNPlane id="VisitPlane" bpmnElement="VisitCollaboration">
+      <bpmndi:BPMNShape id="VisitClubShape" bpmnElement="VisitClub" isHorizontal="true">
+        <dc:Bounds x="40" y="220" width="1810" height="720" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ClientVisitShape" bpmnElement="ClientVisit" isHorizontal="true">
+        <dc:Bounds x="40" y="40" width="1810" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VisitsystemShape" bpmnElement="Visitsystem" isHorizontal="true">
+        <dc:Bounds x="90" y="220" width="1760" height="220" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VisitadminShape" bpmnElement="Visitadmin" isHorizontal="true">
+        <dc:Bounds x="90" y="440" width="1760" height="500" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VStartShape" bpmnElement="VStart">
+        <dc:Bounds x="135" y="532" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VIdentifyShape" bpmnElement="VIdentify">
+        <dc:Bounds x="250" y="500" width="250" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VCheckShape" bpmnElement="VCheck">
+        <dc:Bounds x="570" y="270" width="270" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VResultShape" bpmnElement="VResult" isMarkerVisible="true">
+        <dc:Bounds x="930" y="300" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VAllowShape" bpmnElement="VAllow">
+        <dc:Bounds x="1090" y="500" width="260" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VRegisterShape" bpmnElement="VRegister">
+        <dc:Bounds x="1410" y="270" width="285" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VEndShape" bpmnElement="VEnd">
+        <dc:Bounds x="1750" y="307" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VExplainShape" bpmnElement="VExplain">
+        <dc:Bounds x="800" y="760" width="280" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VRefusedShape" bpmnElement="VRefused">
+        <dc:Bounds x="1150" y="792" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="VExistingShape" bpmnElement="VExisting">
+        <dc:Bounds x="660" y="675" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="VisitF0Edge" bpmnElement="VisitF0">
+        <di:waypoint x="171" y="550" />
+        <di:waypoint x="250" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF1Edge" bpmnElement="VisitF1">
+        <di:waypoint x="500" y="550" />
+        <di:waypoint x="535" y="550" />
+        <di:waypoint x="535" y="325" />
+        <di:waypoint x="570" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF2Edge" bpmnElement="VisitF2">
+        <di:waypoint x="840" y="325" />
+        <di:waypoint x="930" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF3Edge" bpmnElement="VisitF3">
+        <di:waypoint x="980" y="325" />
+        <di:waypoint x="1060" y="325" />
+        <di:waypoint x="1060" y="550" />
+        <di:waypoint x="1090" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF4Edge" bpmnElement="VisitF4">
+        <di:waypoint x="1350" y="550" />
+        <di:waypoint x="1380" y="550" />
+        <di:waypoint x="1380" y="325" />
+        <di:waypoint x="1410" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF5Edge" bpmnElement="VisitF5">
+        <di:waypoint x="1695" y="325" />
+        <di:waypoint x="1750" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF6Edge" bpmnElement="VisitF6">
+        <di:waypoint x="955" y="350" />
+        <di:waypoint x="955" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF7Edge" bpmnElement="VisitF7">
+        <di:waypoint x="1080" y="810" />
+        <di:waypoint x="1150" y="810" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitF8Edge" bpmnElement="VisitF8">
+        <di:waypoint x="955" y="300" />
+        <di:waypoint x="955" y="245" />
+        <di:waypoint x="875" y="245" />
+        <di:waypoint x="875" y="693" />
+        <di:waypoint x="696" y="693" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitM0Edge" bpmnElement="VisitM0">
+        <di:waypoint x="153" y="120" />
+        <di:waypoint x="153" y="532" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="VisitM1Edge" bpmnElement="VisitM1">
+        <di:waypoint x="1080" y="785" />
+        <di:waypoint x="1810" y="785" />
+        <di:waypoint x="1810" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

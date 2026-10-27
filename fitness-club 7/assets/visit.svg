@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="1010" viewBox="0 0 1900 1010">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#263547"/></marker><marker id="message" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><path d="M1,1 L11,5 L1,9" fill="white" stroke="#58677a"/></marker></defs>
+<rect width="1900" height="1010" fill="white"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#15283e">
+<rect x="40" y="220" width="1810" height="720" fill="white" stroke="#263547" stroke-width="2"/><path d="M90,220 v720" stroke="#263547"/>
+<text transform="translate(70,580.0) rotate(-90)" text-anchor="middle" font-size="20">Фитнес клуб</text>
+<rect x="40" y="40" width="1810" height="80" fill="#f3f5f7" stroke="#263547" stroke-width="2"/>
+<text x="70" y="88" text-anchor="start" font-size="21">Клиент</text>
+<rect x="90" y="220" width="1760" height="220" fill="none" stroke="#a1adba"/><path d="M135,220 v220" stroke="#a1adba"/>
+<text transform="translate(119,330.0) rotate(-90)" text-anchor="middle" font-size="17">Информационная система</text>
+<rect x="90" y="440" width="1760" height="500" fill="none" stroke="#a1adba"/><path d="M135,440 v500" stroke="#a1adba"/>
+<text transform="translate(119,690.0) rotate(-90)" text-anchor="middle" font-size="17">Администратор</text>
+<polyline points="171,550 250,550" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="500,550 535,550 535,325 570,325" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="840,325 930,325" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="980,325 1060,325 1060,550 1090,550" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="1080" y="420" text-anchor="middle" font-size="16">Допуск разрешён</text>
+<polyline points="1350,550 1380,550 1380,325 1410,325" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="1695,325 1750,325" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="955,350 955,760" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="1000" y="670" text-anchor="middle" font-size="16">Нет права</text>
+<polyline points="1080,810 1150,810" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="955,300 955,245 875,245 875,693 696,693" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="770" y="645" text-anchor="middle" font-size="16">Визит уже учтён</text>
+<polyline points="153,120 153,532" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="153" cy="120" r="4" fill="white" stroke="#58677a"/>
+<text x="290" y="175" text-anchor="middle" font-size="16">Обращение на рецепцию</text>
+<polyline points="1080,785 1810,785 1810,120" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="1080" cy="785" r="4" fill="white" stroke="#58677a"/>
+<text x="1760" y="175" text-anchor="middle" font-size="16">Причина отказа</text>
+<circle cx="153.0" cy="550.0" r="18" fill="white" stroke="#263547" stroke-width="2"/>
+<rect x="143" y="543" width="20" height="14" fill="white" stroke="#263547"/><path d="M143,543 l10,8 l10,-8" fill="none" stroke="#263547"/>
+<text x="143" y="596" text-anchor="start" font-size="16">Клиент</text>
+<text x="143" y="621" text-anchor="start" font-size="16">пришёл</text>
+<rect x="250" y="500" width="250" height="100" rx="12" fill="#fff5e7" stroke="#263547" stroke-width="2"/>
+<circle cx="273" cy="517" r="5" fill="white" stroke="#263547"/><path d="M264,534 v-6 q9,-9 18,0 v6 Z" fill="white" stroke="#263547"/>
+<text x="375.0" y="549" text-anchor="middle" font-size="16">Идентифицировать</text>
+<text x="375.0" y="574" text-anchor="middle" font-size="16">клиента и найти запись</text>
+<rect x="570" y="270" width="270" height="110" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="602.0,287.0 601.8,289.0 598.5,289.7 597.8,290.9 599.1,294.1 597.6,295.3 594.7,293.5 593.4,293.9 592.0,297.0 590.0,296.8 589.3,293.5 588.1,292.8 584.9,294.1 583.7,292.6 585.5,289.7 585.1,288.4 582.0,287.0 582.2,285.0 585.5,284.3 586.2,283.1 584.9,279.9 586.4,278.7 589.3,280.5 590.6,280.1 592.0,277.0 594.0,277.2 594.7,280.5 595.9,281.2 599.1,279.9 600.3,281.4 598.5,284.3 598.9,285.6" fill="white" stroke="#263547"/><circle cx="592" cy="287" r="3" fill="white" stroke="#263547"/>
+<text x="705.0" y="314" text-anchor="middle" font-size="16">Проверить запись,</text>
+<text x="705.0" y="339" text-anchor="middle" font-size="16">абонемент и наличие</text>
+<text x="705.0" y="364" text-anchor="middle" font-size="16">уже учтённого визита</text>
+<polygon points="955,300 980,325 955,350 930,325" fill="#fff8df" stroke="#263547" stroke-width="2"/><path d="M947,317 l16,16 M963,317 l-16,16" stroke="#263547" stroke-width="3"/>
+<text x="1040" y="240" text-anchor="middle" font-size="17">Результат</text>
+<text x="1040" y="265" text-anchor="middle" font-size="17">проверки</text>
+<rect x="1090" y="500" width="260" height="100" rx="12" fill="#fff5e7" stroke="#263547" stroke-width="2"/>
+<circle cx="1113" cy="517" r="5" fill="white" stroke="#263547"/><path d="M1104,534 v-6 q9,-9 18,0 v6 Z" fill="white" stroke="#263547"/>
+<text x="1220.0" y="549" text-anchor="middle" font-size="16">Подтвердить допуск</text>
+<text x="1220.0" y="574" text-anchor="middle" font-size="16">и фактический визит</text>
+<rect x="1410" y="270" width="285" height="110" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="1442.0,287.0 1441.8,289.0 1438.5,289.7 1437.8,290.9 1439.1,294.1 1437.6,295.3 1434.7,293.5 1433.4,293.9 1432.0,297.0 1430.0,296.8 1429.3,293.5 1428.1,292.8 1424.9,294.1 1423.7,292.6 1425.5,289.7 1425.1,288.4 1422.0,287.0 1422.2,285.0 1425.5,284.3 1426.2,283.1 1424.9,279.9 1426.4,278.7 1429.3,280.5 1430.6,280.1 1432.0,277.0 1434.0,277.2 1434.7,280.5 1435.9,281.2 1439.1,279.9 1440.3,281.4 1438.5,284.3 1438.9,285.6" fill="white" stroke="#263547"/><circle cx="1432" cy="287" r="3" fill="white" stroke="#263547"/>
+<text x="1552.5" y="314" text-anchor="middle" font-size="16">Атомарно зарегистрировать</text>
+<text x="1552.5" y="339" text-anchor="middle" font-size="16">визит, списать посещение</text>
+<text x="1552.5" y="364" text-anchor="middle" font-size="16">и обновить отчётность</text>
+<circle cx="1768.0" cy="325.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="1768.0" y="371" text-anchor="middle" font-size="16">Визит учтён</text>
+<rect x="800" y="760" width="280" height="100" rx="12" fill="#fff5e7" stroke="#263547" stroke-width="2"/>
+<circle cx="823" cy="777" r="5" fill="white" stroke="#263547"/><path d="M814,794 v-6 q9,-9 18,0 v6 Z" fill="white" stroke="#263547"/>
+<text x="940.0" y="809" text-anchor="middle" font-size="16">Сообщить причину отказа</text>
+<text x="940.0" y="834" text-anchor="middle" font-size="16">и разобрать исключение</text>
+<circle cx="1168.0" cy="810.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="1168.0" y="856" text-anchor="middle" font-size="16">Без списания</text>
+<circle cx="678.0" cy="693.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="678.0" y="739" text-anchor="middle" font-size="16">Визит уже учтён;</text>
+<text x="678.0" y="764" text-anchor="middle" font-size="16">повторного списания нет</text>
+<text x="45" y="985" text-anchor="start" font-size="16">Сплошные стрелки — управление; пунктир — сообщения; голубые задачи — ИС; бежевые — действия администратора.</text>
+</g></svg>

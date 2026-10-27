@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1110" viewBox="0 0 1640 1110">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#263547"/></marker><marker id="message" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><path d="M1,1 L11,5 L1,9" fill="white" stroke="#58677a"/></marker></defs>
+<rect width="1640" height="1110" fill="white"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#15283e">
+<rect x="40" y="220" width="1540" height="820" fill="white" stroke="#263547" stroke-width="2"/><path d="M90,220 v820" stroke="#263547"/>
+<text transform="translate(70,630.0) rotate(-90)" text-anchor="middle" font-size="20">Фитнес клуб</text>
+<rect x="40" y="40" width="1540" height="80" fill="#f3f5f7" stroke="#263547" stroke-width="2"/>
+<text x="70" y="88" text-anchor="start" font-size="21">Клиент</text>
+<polyline points="171,350 250,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="460,350 520,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="570,350 720,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="620" y="335" text-anchor="middle" font-size="16">Да</text>
+<polyline points="545,375 545,650" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="570" y="500" text-anchor="middle" font-size="16">Нет</text>
+<polyline points="670,700 740,700" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="765,675 765,550 640,550 640,350 720,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="790" y="605" text-anchor="middle" font-size="16">Да</text>
+<polyline points="790,700 930,700" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="850" y="685" text-anchor="middle" font-size="16">Нет</text>
+<polyline points="970,350 1030,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="1080,350 1170,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="1120" y="335" text-anchor="middle" font-size="16">Да</text>
+<polyline points="1055,375 1055,855 1170,855" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="1080" y="650" text-anchor="middle" font-size="16">Нет</text>
+<polyline points="1390,350 1460,350" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="1390,855 1460,855" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="153,120 153,332" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="153" cy="120" r="4" fill="white" stroke="#58677a"/>
+<text x="230" y="175" text-anchor="middle" font-size="16">Запрос</text>
+<polyline points="1280,300 1280,120" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="1280" cy="300" r="4" fill="white" stroke="#58677a"/>
+<text x="1370" y="175" text-anchor="middle" font-size="16">Подтверждение</text>
+<polyline points="1390,825 1540,825 1540,120" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="1390" cy="825" r="4" fill="white" stroke="#58677a"/>
+<text x="1570" y="175" text-anchor="middle" font-size="16">Отказ</text>
+<circle cx="153.0" cy="350.0" r="18" fill="white" stroke="#263547" stroke-width="2"/>
+<rect x="143" y="343" width="20" height="14" fill="white" stroke="#263547"/><path d="M143,343 l10,8 l10,-8" fill="none" stroke="#263547"/>
+<text x="153.0" y="396" text-anchor="middle" font-size="16">Запрос записи</text>
+<rect x="250" y="300" width="210" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="282.0,317.0 281.8,319.0 278.5,319.7 277.8,320.9 279.1,324.1 277.6,325.3 274.7,323.5 273.4,323.9 272.0,327.0 270.0,326.8 269.3,323.5 268.1,322.8 264.9,324.1 263.7,322.6 265.5,319.7 265.1,318.4 262.0,317.0 262.2,315.0 265.5,314.3 266.2,313.1 264.9,309.9 266.4,308.7 269.3,310.5 270.6,310.1 272.0,307.0 274.0,307.2 274.7,310.5 275.9,311.2 279.1,309.9 280.3,311.4 278.5,314.3 278.9,315.6" fill="white" stroke="#263547"/><circle cx="272" cy="317" r="3" fill="white" stroke="#263547"/>
+<text x="355.0" y="349" text-anchor="middle" font-size="16">Проверить</text>
+<text x="355.0" y="374" text-anchor="middle" font-size="16">абонемент</text>
+<polygon points="545,325 570,350 545,375 520,350" fill="#fff8df" stroke="#263547" stroke-width="2"/><path d="M537,342 l16,16 M553,342 l-16,16" stroke="#263547" stroke-width="3"/>
+<text x="545" y="270" text-anchor="middle" font-size="17">Абонемент</text>
+<text x="545" y="295" text-anchor="middle" font-size="17">подходит?</text>
+<rect x="720" y="300" width="250" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="752.0,317.0 751.8,319.0 748.5,319.7 747.8,320.9 749.1,324.1 747.6,325.3 744.7,323.5 743.4,323.9 742.0,327.0 740.0,326.8 739.3,323.5 738.1,322.8 734.9,324.1 733.7,322.6 735.5,319.7 735.1,318.4 732.0,317.0 732.2,315.0 735.5,314.3 736.2,313.1 734.9,309.9 736.4,308.7 739.3,310.5 740.6,310.1 742.0,307.0 744.0,307.2 744.7,310.5 745.9,311.2 749.1,309.9 750.3,311.4 748.5,314.3 748.9,315.6" fill="white" stroke="#263547"/><circle cx="742" cy="317" r="3" fill="white" stroke="#263547"/>
+<text x="845.0" y="344" text-anchor="middle" font-size="16">Атомарно проверить</text>
+<text x="845.0" y="369" text-anchor="middle" font-size="16">право и место,</text>
+<text x="845.0" y="394" text-anchor="middle" font-size="16">создать запись</text>
+<polygon points="1055,325 1080,350 1055,375 1030,350" fill="#fff8df" stroke="#263547" stroke-width="2"/><path d="M1047,342 l16,16 M1063,342 l-16,16" stroke="#263547" stroke-width="3"/>
+<text x="1055" y="270" text-anchor="middle" font-size="17">Запись</text>
+<text x="1055" y="295" text-anchor="middle" font-size="17">создана?</text>
+<rect x="1170" y="300" width="220" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<rect x="1182" y="311" width="22" height="15" fill="#263547" stroke="#263547"/><path d="M1182,311 l11,8 l11,-8" fill="none" stroke="white"/>
+<text x="1280.0" y="349" text-anchor="middle" font-size="16">Отправить</text>
+<text x="1280.0" y="374" text-anchor="middle" font-size="16">подтверждение</text>
+<circle cx="1478.0" cy="350.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="1478.0" y="396" text-anchor="middle" font-size="16">Клиент записан</text>
+<rect x="410" y="650" width="260" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="4"/>
+<text x="540.0" y="699" text-anchor="middle" font-size="16">Покупка абонемента</text>
+<text x="540.0" y="724" text-anchor="middle" font-size="16">Процесс 2</text>
+<polygon points="765,675 790,700 765,725 740,700" fill="#fff8df" stroke="#263547" stroke-width="2"/><path d="M757,692 l16,16 M773,692 l-16,16" stroke="#263547" stroke-width="3"/>
+<text x="880" y="605" text-anchor="middle" font-size="17">Покупка</text>
+<text x="880" y="630" text-anchor="middle" font-size="17">успешна?</text>
+<circle cx="948.0" cy="700.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="948.0" y="746" text-anchor="middle" font-size="16">Без записи</text>
+<rect x="1170" y="800" width="220" height="110" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<rect x="1182" y="811" width="22" height="15" fill="#263547" stroke="#263547"/><path d="M1182,811 l11,8 l11,-8" fill="none" stroke="white"/>
+<text x="1280.0" y="844" text-anchor="middle" font-size="16">Отправить отказ:</text>
+<text x="1280.0" y="869" text-anchor="middle" font-size="16">нет права, дубль</text>
+<text x="1280.0" y="894" text-anchor="middle" font-size="16">или нет мест</text>
+<circle cx="1478.0" cy="855.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="1478.0" y="901" text-anchor="middle" font-size="16">Без новой записи</text>
+<text x="45" y="1085" text-anchor="start" font-size="16">Сплошные стрелки — управление; пунктир — сообщения; голубые задачи — ИС; бежевые — действия администратора.</text>
+</g></svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="1240" viewBox="0 0 1720 1240">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#263547"/></marker><marker id="message" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><path d="M1,1 L11,5 L1,9" fill="white" stroke="#58677a"/></marker></defs>
+<rect width="1720" height="1240" fill="white"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#15283e">
+<rect x="40" y="220" width="1620" height="960" fill="white" stroke="#263547" stroke-width="2"/><path d="M90,220 v960" stroke="#263547"/>
+<text transform="translate(70,700.0) rotate(-90)" text-anchor="middle" font-size="20">Фитнес клуб</text>
+<rect x="40" y="40" width="500" height="80" fill="#f3f5f7" stroke="#263547" stroke-width="2"/>
+<text x="70" y="88" text-anchor="start" font-size="21">Платёжный сервис</text>
+<rect x="560" y="40" width="1100" height="80" fill="#f3f5f7" stroke="#263547" stroke-width="2"/>
+<text x="590" y="88" text-anchor="start" font-size="21">Клиент</text>
+<rect x="90" y="220" width="1570" height="740" fill="none" stroke="#a1adba"/><path d="M135,220 v740" stroke="#a1adba"/>
+<text transform="translate(119,590.0) rotate(-90)" text-anchor="middle" font-size="17">Информационная система</text>
+<rect x="90" y="960" width="1570" height="220" fill="none" stroke="#a1adba"/><path d="M135,960 v220" stroke="#a1adba"/>
+<text transform="translate(119,1070.0) rotate(-90)" text-anchor="middle" font-size="17">Администратор</text>
+<polyline points="171,320 250,320" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="500,320 570,320" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="820,320 900,320" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="1025,370 1025,520" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="900,570 690,570" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="640,570 520,570" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="575" y="552" text-anchor="middle" font-size="16">Да</text>
+<polyline points="250,575 191,575" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="665,595 665,790" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="695" y="710" text-anchor="middle" font-size="16">Нет</text>
+<polyline points="820,845 900,845" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="1090,388 1200,388 1200,1065 1250,1065" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="1300" y="445" text-anchor="middle" font-size="16">Время истекло</text>
+<polyline points="1530,1070 1580,1070" fill="none" stroke="#263547" stroke-width="2"  marker-end="url(#arrow)"/>
+<polyline points="375,270 375,120" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="375" cy="270" r="4" fill="white" stroke="#58677a"/>
+<text x="400" y="180" text-anchor="middle" font-size="16">Создание платежа</text>
+<polyline points="695,270 695,120" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="695" cy="270" r="4" fill="white" stroke="#58677a"/>
+<text x="740" y="180" text-anchor="middle" font-size="16">Ссылка на оплату</text>
+<polyline points="475,120 475,150 1025,150 1025,270" fill="none" stroke="#58677a" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#message)"/>
+<circle cx="475" cy="120" r="4" fill="white" stroke="#58677a"/>
+<text x="1080" y="180" text-anchor="middle" font-size="16">Уведомление</text>
+<circle cx="153.0" cy="320.0" r="18" fill="white" stroke="#263547" stroke-width="2"/>
+<text x="143" y="366" text-anchor="start" font-size="16">Начало</text>
+<text x="143" y="391" text-anchor="start" font-size="16">покупки</text>
+<rect x="250" y="270" width="250" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="282.0,287.0 281.8,289.0 278.5,289.7 277.8,290.9 279.1,294.1 277.6,295.3 274.7,293.5 273.4,293.9 272.0,297.0 270.0,296.8 269.3,293.5 268.1,292.8 264.9,294.1 263.7,292.6 265.5,289.7 265.1,288.4 262.0,287.0 262.2,285.0 265.5,284.3 266.2,283.1 264.9,279.9 266.4,278.7 269.3,280.5 270.6,280.1 272.0,277.0 274.0,277.2 274.7,280.5 275.9,281.2 279.1,279.9 280.3,281.4 278.5,284.3 278.9,285.6" fill="white" stroke="#263547"/><circle cx="272" cy="287" r="3" fill="white" stroke="#263547"/>
+<text x="375.0" y="319" text-anchor="middle" font-size="16">Создать заказ</text>
+<text x="375.0" y="344" text-anchor="middle" font-size="16">и платёж у провайдера</text>
+<rect x="570" y="270" width="250" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<rect x="582" y="281" width="22" height="15" fill="#263547" stroke="#263547"/><path d="M582,281 l11,8 l11,-8" fill="none" stroke="white"/>
+<text x="695.0" y="319" text-anchor="middle" font-size="16">Отправить клиенту</text>
+<text x="695.0" y="344" text-anchor="middle" font-size="16">ссылку на оплату</text>
+<rect x="900" y="270" width="250" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<rect x="912" y="281" width="22" height="15" fill="white" stroke="#263547"/><path d="M912,281 l11,8 l11,-8" fill="none" stroke="#263547"/>
+<text x="1025.0" y="319" text-anchor="middle" font-size="16">Ожидать уведомление</text>
+<text x="1025.0" y="344" text-anchor="middle" font-size="16">платёжного сервиса</text>
+<circle cx="1090.0" cy="370.0" r="18" fill="white" stroke="#263547" stroke-width="2"/>
+<circle cx="1090.0" cy="370.0" r="14" fill="none" stroke="#263547"/><path d="M1090.0,361.0 v9 l6,4" fill="none" stroke="#263547"/>
+<text x="1090.0" y="416" text-anchor="middle" font-size="16">24 часа</text>
+<rect x="900" y="520" width="250" height="100" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="932.0,537.0 931.8,539.0 928.5,539.7 927.8,540.9 929.1,544.1 927.6,545.3 924.7,543.5 923.4,543.9 922.0,547.0 920.0,546.8 919.3,543.5 918.1,542.8 914.9,544.1 913.7,542.6 915.5,539.7 915.1,538.4 912.0,537.0 912.2,535.0 915.5,534.3 916.2,533.1 914.9,529.9 916.4,528.7 919.3,530.5 920.6,530.1 922.0,527.0 924.0,527.2 924.7,530.5 925.9,531.2 929.1,529.9 930.3,531.4 928.5,534.3 928.9,535.6" fill="white" stroke="#263547"/><circle cx="922" cy="537" r="3" fill="white" stroke="#263547"/>
+<text x="1025.0" y="569" text-anchor="middle" font-size="16">Проверить подлинность,</text>
+<text x="1025.0" y="594" text-anchor="middle" font-size="16">заказ, сумму и статус</text>
+<polygon points="665,545 690,570 665,595 640,570" fill="#fff8df" stroke="#263547" stroke-width="2"/><path d="M657,562 l16,16 M673,562 l-16,16" stroke="#263547" stroke-width="3"/>
+<text x="665" y="490" text-anchor="middle" font-size="17">Оплата</text>
+<text x="665" y="515" text-anchor="middle" font-size="17">подтверждена?</text>
+<rect x="250" y="520" width="270" height="110" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="282.0,537.0 281.8,539.0 278.5,539.7 277.8,540.9 279.1,544.1 277.6,545.3 274.7,543.5 273.4,543.9 272.0,547.0 270.0,546.8 269.3,543.5 268.1,542.8 264.9,544.1 263.7,542.6 265.5,539.7 265.1,538.4 262.0,537.0 262.2,535.0 265.5,534.3 266.2,533.1 264.9,529.9 266.4,528.7 269.3,530.5 270.6,530.1 272.0,527.0 274.0,527.2 274.7,530.5 275.9,531.2 279.1,529.9 280.3,531.4 278.5,534.3 278.9,535.6" fill="white" stroke="#263547"/><circle cx="272" cy="537" r="3" fill="white" stroke="#263547"/>
+<text x="385.0" y="564" text-anchor="middle" font-size="16">Однократно активировать</text>
+<text x="385.0" y="589" text-anchor="middle" font-size="16">абонемент; результат</text>
+<text x="385.0" y="614" text-anchor="middle" font-size="16">покупки — успех</text>
+<circle cx="173.0" cy="575.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="145" y="621" text-anchor="start" font-size="16">Успешная</text>
+<text x="145" y="646" text-anchor="start" font-size="16">покупка</text>
+<rect x="550" y="790" width="270" height="110" rx="12" fill="#edf4fc" stroke="#263547" stroke-width="2"/>
+<polygon points="582.0,807.0 581.8,809.0 578.5,809.7 577.8,810.9 579.1,814.1 577.6,815.3 574.7,813.5 573.4,813.9 572.0,817.0 570.0,816.8 569.3,813.5 568.1,812.8 564.9,814.1 563.7,812.6 565.5,809.7 565.1,808.4 562.0,807.0 562.2,805.0 565.5,804.3 566.2,803.1 564.9,799.9 566.4,798.7 569.3,800.5 570.6,800.1 572.0,797.0 574.0,797.2 574.7,800.5 575.9,801.2 579.1,799.9 580.3,801.4 578.5,804.3 578.9,805.6" fill="white" stroke="#263547"/><circle cx="572" cy="807" r="3" fill="white" stroke="#263547"/>
+<text x="685.0" y="834" text-anchor="middle" font-size="16">Сохранить отказ;</text>
+<text x="685.0" y="859" text-anchor="middle" font-size="16">результат покупки —</text>
+<text x="685.0" y="884" text-anchor="middle" font-size="16">без подтверждения</text>
+<circle cx="918.0" cy="845.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="918.0" y="891" text-anchor="middle" font-size="16">Неуспешная попытка</text>
+<rect x="1250" y="1010" width="280" height="145" rx="12" fill="#fff5e7" stroke="#263547" stroke-width="2"/>
+<circle cx="1273" cy="1027" r="5" fill="white" stroke="#263547"/><path d="M1264,1044 v-6 q9,-9 18,0 v6 Z" fill="white" stroke="#263547"/>
+<text x="1390.0" y="1054" text-anchor="middle" font-size="16">Сверить статус</text>
+<text x="1390.0" y="1079" text-anchor="middle" font-size="16">с провайдером;</text>
+<text x="1390.0" y="1104" text-anchor="middle" font-size="16">неподтверждённый заказ</text>
+<text x="1390.0" y="1129" text-anchor="middle" font-size="16">оставить на проверке</text>
+<circle cx="1598.0" cy="1070.0" r="18" fill="white" stroke="#263547" stroke-width="4"/>
+<text x="1598.0" y="1116" text-anchor="middle" font-size="16">Без успеха</text>
+<text x="45" y="1215" text-anchor="start" font-size="16">Сплошные стрелки — управление; пунктир — сообщения; голубые задачи — ИС; бежевые — действия администратора.</text>
+</g></svg>
